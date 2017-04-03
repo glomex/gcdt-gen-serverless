@@ -1,16 +1,9 @@
-# Plugins for gcdt
+# AWS serverless scaffolding generator for gcdt
 
 author: glomex OPS Team
 
+## Features
 
-## List of available plugins 
-
-gcdt-plugins is a collection of gcdt plugins we use internally @ glomex.
-
-* say_hello - the friendliest plugin ever
-* gcdt_slack_plugin - inform slack channels about deployments on prod
-* gcdt_datadog_plugin - collect gcdt usage statistics for the gcdt dashboard
-* ...
 
 
 ## Running tests

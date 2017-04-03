@@ -25,7 +25,7 @@ setup(
     version=version,
     description='Serverless generator for gcdt',
     long_description=long_description,
-    license='BSD',
+    license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
