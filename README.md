@@ -1,23 +1,29 @@
-# AWS serverless scaffolding generator for gcdt
+[![Documentation](https://readthedocs.org/projects/beedo/badge/?version=latest)](http://gcdt.readthedocs.io/en/latest/)
+[![License](http://img.shields.io/badge/license-MIT-yellowgreen.svg)](LICENSE) 
+[![GitHub issues](https://img.shields.io/github/issues/glomex/glomex-cloud-deployment-tools.svg?maxAge=2592000)](https://github.com/glomex/glomex-cloud-deployment-tools/issues)
 
-author: glomex OPS Team
+# AWS serverless scaffolding generator plugin for gcdt
 
-## Features
+author: glomex SRE Team
+gcdt: https://github.com/glomex/gcdt
 
+Features include:
+
+* 
 
 
 ## Running tests
 
-If you add a plugin here it is very important to have a good test coverage so we can make sure your plugin runs with the next gcdt version.
+Please make sure to have good test coverage for your plugin so we can always make sure your plugin runs with the upcoming gcdt version.
 
 Run tests like so:
 
 ``` bash
-$ python -m pytest -vv --cov-report term-missing plugins/say_hello/tests/test_*
+$ python -m pytest -vv --cov-report term-missing tests/test_*
 ```
 
-If you want to run tests for all plugins (like to prepare for a release)
 
-``` bash
-$ python -m pytest -vv --cov-report term-missing --cov plugins plugins/*/tests/test_*
-```
+## License
+
+Copyright (c) 2017 glomex and others.
+gcdt and plugins are released under the MIT License (see LICENSE).

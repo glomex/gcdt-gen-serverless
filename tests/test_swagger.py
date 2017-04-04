@@ -1,6 +1,6 @@
 from gcdt_gen_serverless.swagger import SwaggerGenerator
 
-from gru import Gru
+from gcdt_gru import Gru
 from pytest import fixture
 
 

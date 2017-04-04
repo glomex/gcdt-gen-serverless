@@ -1,6 +1,6 @@
 import copy
 
-from gru.app import Gru, RouteEntry
+from gcdt_gru.app import Gru, RouteEntry
 
 # inspired by https://github.com/awslabs/chalice/pull/256
 
