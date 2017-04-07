@@ -60,6 +60,26 @@ def prompting(prompt):
         },
         {
             'type': 'input',
+            'name': 'role',
+            'message': 'AWS Lambda role you want to assign.',
+            'store': True
+        },
+        {
+            'type': 'confirm',
+            'name': 'use_artifact_bucket',
+            'message': 'Do you want to use an s3 bucket for AWS Lambda deployment?',
+            'store': True,
+            'default': False
+        },
+        {
+            'type': 'input',
+            'name': 'artifact_bucket',
+            'message': 'S3 bucket used for AWS Lambda deployment.',
+            'store': False,
+            'when': lambda answers: answers['use_artifact_bucket']
+        },
+        {
+            'type': 'input',
             'name': 'timeout',
             'message': 'The function execution time(s) at which Lambda should terminate the function',
             'store': True,
@@ -71,6 +91,20 @@ def prompting(prompt):
             'message': 'The amount of memory(MB) for the function (must be multiple of 64).',
             'store': True,
             'default': '128'
+        },
+        {
+            'type': 'confirm',
+            'name': 'api_gateway',
+            'message': 'Do you want scaffolding for API Gateway?',
+            'store': True,
+            'default': True
+        },
+        {
+            'type': 'input',
+            'name': 'api_key',
+            'message': 'API Gateway API key.',
+            'store': False,
+            'when': lambda answers: answers['api_gateway']
         },
     ]
 

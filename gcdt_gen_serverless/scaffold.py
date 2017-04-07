@@ -25,10 +25,11 @@ def scaffold(answers):
     envs = answers.pop('envs')
     app = load_app('./')
     app_name = app.app_name
-    sg = SwaggerGenerator('eu-west-1', '%sUri' % app_name)
-    with open(SWAGGER_FILE, 'w') as sfile:
-        sfile.write(yaml.dump(sg.generate_swagger(app),
-                              Dumper=yaml.RoundTripDumper))
+    if answers['api_gateway']:
+        sg = SwaggerGenerator('eu-west-1', '%sUri' % app_name)
+        with open(SWAGGER_FILE, 'w') as sfile:
+            sfile.write(yaml.dump(sg.generate_swagger(app),
+                                  Dumper=yaml.RoundTripDumper))
     for env in envs:
         with open('%s_%s.json' % (CONFIG_BASENAME, env), 'w') as jfile:
             json.dump(generate_config(env=env, app_name=app_name, **answers),
@@ -46,7 +47,7 @@ def generate_config(**kwargs):
             "lambda": {
                 "name": "%s-%s-%s" % (account, env, app_name),
                 "description": "Lambda function for %s" % app_name,
-                "role": "arn:aws:iam::420189626185:role/7f-selfassign/infra-dev-CommonLambdaRole-CEQQX3SPUTFX",
+                "role": kwargs.get('role', 300),
                 "handlerFunction": "app.app",
                 "handlerFile": "app.py",
                 "timeout": kwargs.get('timeout', 300),
@@ -62,18 +63,23 @@ def generate_config(**kwargs):
                         "target": "."
                     }
                 ]
-            },
-            "deployment": {
-                "region": region,
-                "artifactBucket": "7finity-%s-%s-deployment" % (account, env)
             }
-        },
-        "yugen": {
+        }
+    }
+    
+    if kwargs.get('artifact_bucket', False):
+        config['ramuda']['deployment'] = {
+            "region": region,
+            "artifactBucket": kwargs.get('artifact_bucket', '')
+        }
+    
+    if kwargs.get('api_gateway', False):
+        config['yugen'] = {
             "api": {
                 "name": "%s-%s-%s-api" % (account, env, app_name),
                 "description": "API Gateway for %s" % app_name,
                 "targetStage": env,
-                "apiKey": "zivgv017jf"
+                "apiKey": kwargs.get('api_key', '')
             },
             "lambda": {
                 "entries": [
@@ -85,5 +91,4 @@ def generate_config(**kwargs):
                 ]
             }
         }
-    }
     return config
