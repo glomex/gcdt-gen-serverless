@@ -22,7 +22,7 @@ dependency_links = [x.strip().replace('git+', '') for x in all_reqs if 'git+' no
 
 setup(
     name='gcdt-gen-serverless',
-    version='0.0.7',
+    version='0.0.8',
     description='Serverless generator for gcdt',
     long_description=long_description,
     license='MIT',
