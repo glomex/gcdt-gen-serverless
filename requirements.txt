@@ -1,4 +1,5 @@
 # Dependencies have to be in sync with other packages (gcdt, gcdt-plugins)
+gcdt>=0.2.0
 gcdt-gru>=0.0.6
 ruamel.yaml>=0.15.9  # used in gcdt-bundler, too
 
